@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+set -e
+echo "Running lint-staged..."
+npx lint-staged || {
+  echo "Lint-staged failed. Aborting commit."
+  exit 1
+}
+
+echo "Running knip..."
+npm run knip || {
+  echo "Knip found unused dependencies. Aborting commit."
+  exit 1
+}
+
+echo "All pre-commit checks passed!"
