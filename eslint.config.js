@@ -27,14 +27,20 @@ export default defineConfig([
       globals: globals.browser,
     },
     rules: {
-      /* Prettier */
-      'prettier/prettier': 'error',
-
       /* Import rules */
       ...importPlugin.configs.recommended.rules,
 
       /* Quality-of-life */
       'no-console': 'warn',
+    },
+    settings: {
+      'import/resolver': {
+        typescript: {
+          aliasDirs: {
+            '@': './src',
+          },
+        },
+      },
     },
   },
 ]);
