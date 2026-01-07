@@ -1,12 +1,21 @@
 import type { CardData } from '@/utils/types';
+import { useNavigate } from 'react-router-dom';
 
 interface AlgorithmCardProps {
   algorithm: CardData;
 }
 function AlgorithmCard({ algorithm }: Readonly<AlgorithmCardProps>) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (algorithm.route) {
+      navigate(algorithm.route);
+    }
+  };
   return (
     <button
       className={`border border-gray-500 w-full h-full rounded-xl flex flex-col min-h-64 ${algorithm.route ? 'cursor-pointer' : 'cursor-default'}`}
+      onClick={handleClick}
     >
       <img
         src={algorithm.image}

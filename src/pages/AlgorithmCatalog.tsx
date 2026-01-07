@@ -1,5 +1,5 @@
 import AlgorithmCard from '@/components/AlgorithmCard';
-import GlobalSearch from '@/components/GlobalSearch';
+import GlobalSearch from '@/modules/GlobalSearch/GlobalSearch';
 import { Algorithms } from '@/utils/constants';
 import type { CardData } from '@/utils/types';
 
