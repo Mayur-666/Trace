@@ -1,7 +1,9 @@
 import { config } from '@/utils/config';
 import { configureStore } from '@reduxjs/toolkit';
+import rootReducer from '@/store/rootReducer';
+
 const store = configureStore({
-  reducer: {},
+  reducer: rootReducer,
   devTools: config.ENVIRONMENT === 'development',
 });
 
