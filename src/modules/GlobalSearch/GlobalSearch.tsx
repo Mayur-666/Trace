@@ -3,11 +3,21 @@ import { useNavigate } from 'react-router-dom';
 import { setQuery } from '@/slices/searchSlice';
 import GlobalResult from '@/modules/GlobalSearch/GlobalResult';
 import GlobalSearchInput from './GlobalSearchInput';
+import { useAppDispatch } from '@/hooks/hooks';
 
 function GlobalSearch() {
   const [isActive, setIsActive] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const handleSelect = (route: string | null) => {
+    setIsActive(false);
+    dispatch(setQuery(''));
+    if (route) {
+      navigate(route);
+    }
+  };
 
   // Lock scroll
   useEffect(() => {
@@ -23,20 +33,14 @@ function GlobalSearch() {
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        setIsActive(false);
+        handleSelect(null);
         inputRef.current?.blur();
       }
     };
 
     globalThis.addEventListener('keydown', handleKeyDown);
     return () => globalThis.removeEventListener('keydown', handleKeyDown);
-  }, [isActive]);
-
-  const handleSelect = (route: string) => {
-    setIsActive(false);
-    setQuery('');
-    navigate(route);
-  };
+  }, [dispatch, handleSelect, isActive]);
 
   return (
     <>

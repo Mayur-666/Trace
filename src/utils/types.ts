@@ -1,4 +1,4 @@
-export type CardData = {
+export type AlgorithmData = {
   id: string;
   name: string;
   image: string;
@@ -8,5 +8,7 @@ export type CardData = {
 
 export type Algorithm = {
   category: string;
-  data: CardData[];
+  data: AlgorithmData[];
 };
+
+export type AlgorithmIndexing = Record<string, Record<string, AlgorithmData>>;
