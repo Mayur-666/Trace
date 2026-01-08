@@ -1,11 +1,11 @@
-import type { Algorithm } from '@/utils/types';
+import type { Algorithm, AlgorithmIndexing } from '@/utils/types';
 
 export const Algorithms: Algorithm[] = [
   {
     category: 'Sorting',
     data: [
       {
-        id: 'Sorting-1',
+        id: 'selection-sort',
         name: 'Selection Sort',
         image: '/sample.png',
         description:
@@ -13,7 +13,7 @@ export const Algorithms: Algorithm[] = [
         route: '/sorting/selection-sort',
       },
       {
-        id: 'Sorting-2',
+        id: 'quick-sort',
         name: 'Quick Sort',
         image: '/sample.png',
         description: '',
@@ -25,7 +25,7 @@ export const Algorithms: Algorithm[] = [
     category: 'Searching',
     data: [
       {
-        id: 'Searching-1',
+        id: 'binary-search',
         name: 'Binary Search',
         image: '/sample.png',
         description: '',
@@ -34,5 +34,17 @@ export const Algorithms: Algorithm[] = [
     ],
   },
 ];
+
+export const algorithmIndex: AlgorithmIndexing = Algorithms.reduce(
+  (acc, cat) => {
+    const key = cat.category.toLowerCase();
+    acc[key] = {};
+    cat.data.forEach((algo) => {
+      acc[key][algo.id] = algo;
+    });
+    return acc;
+  },
+  {} as AlgorithmIndexing,
+);
 
 export const GLOBAL_SEARCH = 'global_search';

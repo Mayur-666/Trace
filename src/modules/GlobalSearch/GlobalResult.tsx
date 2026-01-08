@@ -1,9 +1,9 @@
 import { useAppSelector } from '@/hooks/hooks';
 import { flatAlgorithms } from '@/utils/search';
-import type { CardData } from '@/utils/types';
+import type { AlgorithmData } from '@/utils/types';
 
 interface GlobalResultProps {
-  handleSelect: (route: CardData['route']) => void;
+  handleSelect: (route: AlgorithmData['route']) => void;
 }
 
 function GlobalResult({ handleSelect }: GlobalResultProps) {

@@ -1,8 +1,8 @@
-import type { CardData } from '@/utils/types';
+import type { AlgorithmData } from '@/utils/types';
 import { useNavigate } from 'react-router-dom';
 
 interface AlgorithmCardProps {
-  algorithm: CardData;
+  algorithm: AlgorithmData;
 }
 function AlgorithmCard({ algorithm }: Readonly<AlgorithmCardProps>) {
   const navigate = useNavigate();
