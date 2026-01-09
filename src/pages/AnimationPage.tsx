@@ -1,15 +1,11 @@
+import NotFound from '@/components/NotFound';
 import useFindAlgorithm from '@/hooks/useFindAlgorithm';
 import ControlPane from '@/modules/ControlPane/ControlPane';
 
 function AnimationPage() {
   const algorithm = useFindAlgorithm();
   if (!algorithm) {
-    return (
-      <div className="t w-full h-full flex items-center justify-center">
-        {' '}
-        Algorithm not found.{' '}
-      </div>
-    );
+    return <NotFound />;
   }
 
   return (
