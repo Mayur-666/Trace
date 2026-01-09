@@ -54,7 +54,6 @@ function GlobalSearch() {
 
       {/* Search */}
       <div className="relative z-20 w-full flex justify-center py-4">
-        {/* <div className="relative w-140"> */}
         <GlobalSearchInput
           inputRef={inputRef}
           active={isActive}
@@ -63,7 +62,6 @@ function GlobalSearch() {
 
         {/* Results */}
         {isActive && <GlobalResult handleSelect={handleSelect} />}
-        {/* </div> */}
       </div>
     </>
   );

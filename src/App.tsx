@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from '@/components/Header';
 import AlgorithmCatalog from '@/pages/AlgorithmCatalog';
 import AnimationPage from '@/pages/AnimationPage';
+import NotFound from './components/NotFound';
 
 function App() {
   return (
@@ -9,8 +10,8 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<AlgorithmCatalog />} />
-        <Route path="/sorting/:id" element={<AnimationPage />} />
-        <Route path="/searching/:id" element={<AnimationPage />} />
+        <Route path="/:category/:id" element={<AnimationPage />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
