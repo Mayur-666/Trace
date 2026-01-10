@@ -37,3 +37,11 @@
 ::-webkit-scrollbar {
   display: none;
 }
+
+input[type='range']::-webkit-slider-thumb {
+  appearance: none;
+  height: 16px;
+  width: 16px;
+  background: #2563eb;
+  border-radius: 9999px;
+}
