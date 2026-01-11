@@ -48,3 +48,4 @@ export const algorithmIndex: AlgorithmIndexing = Algorithms.reduce(
 );
 
 export const GLOBAL_SEARCH = 'global_search';
+export const ALGORITHM_SLICE = 'algorithm_slice';
