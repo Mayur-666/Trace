@@ -4,6 +4,7 @@ import { setQuery } from '@/slices/searchSlice';
 import GlobalResult from '@/modules/GlobalSearch/GlobalResult';
 import GlobalSearchInput from './GlobalSearchInput';
 import { useAppDispatch } from '@/hooks/hooks';
+import type { AlgorithmData } from '@/utils/types';
 
 function GlobalSearch() {
   const [isActive, setIsActive] = useState(false);
@@ -11,7 +12,7 @@ function GlobalSearch() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const handleSelect = (route: string | null) => {
+  const handleSelect = (route: AlgorithmData['route']) => {
     setIsActive(false);
     dispatch(setQuery(''));
     if (route) {
@@ -33,14 +34,15 @@ function GlobalSearch() {
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        handleSelect(null);
+        setIsActive(false);
+        dispatch(setQuery(''));
         inputRef.current?.blur();
       }
     };
 
     globalThis.addEventListener('keydown', handleKeyDown);
     return () => globalThis.removeEventListener('keydown', handleKeyDown);
-  }, [dispatch, handleSelect, isActive]);
+  }, [dispatch, isActive]);
 
   return (
     <>

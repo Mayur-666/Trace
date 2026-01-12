@@ -1,9 +1,13 @@
 import { GLOBAL_SEARCH } from '@/utils/constants';
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-const initialState = {
+interface SearchSlice {
+  query: string;
+  isLoading: false;
+}
+
+const initialState: SearchSlice = {
   query: '',
-  results: [],
   isLoading: false,
 };
 
@@ -11,18 +15,14 @@ const searchSlice = createSlice({
   name: GLOBAL_SEARCH,
   initialState,
   reducers: {
-    setQuery(state, action) {
+    setQuery(state, action: PayloadAction<SearchSlice['query']>) {
       state.query = action.payload;
     },
-    setResults(state, action) {
-      state.results = action.payload;
-    },
-    setIsLoading(state, action) {
+    setIsLoading(state, action: PayloadAction<SearchSlice['isLoading']>) {
       state.isLoading = action.payload;
     },
     resetSearch(state) {
       state.query = '';
-      state.results = [];
       state.isLoading = false;
     },
   },

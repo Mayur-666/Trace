@@ -1,5 +1,5 @@
 import { useAppSelector } from '@/hooks/hooks';
-import { flatAlgorithms } from '@/utils/search';
+import { flatAlgorithms, type FlatAlgorithm } from '@/utils/search';
 import type { AlgorithmData } from '@/utils/types';
 
 interface GlobalResultProps {
@@ -9,7 +9,7 @@ interface GlobalResultProps {
 function GlobalResult({ handleSelect }: GlobalResultProps) {
   const { query } = useAppSelector((state) => state.global_search);
 
-  const results = query
+  const results: FlatAlgorithm[] = query
     ? flatAlgorithms.filter(
         (algo) =>
           algo.name.toLowerCase().includes(query.toLowerCase()) ||

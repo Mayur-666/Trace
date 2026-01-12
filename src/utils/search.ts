@@ -1,7 +1,11 @@
 import { Algorithms } from '@/utils/constants';
-import type { AlgorithmData } from '@/utils/types';
+import type { Algorithm, AlgorithmData } from '@/utils/types';
 
-export const flatAlgorithms = Algorithms.flatMap((category) =>
+export type FlatAlgorithm = AlgorithmData & {
+  category: Algorithm['category'];
+};
+
+export const flatAlgorithms: FlatAlgorithm[] = Algorithms.flatMap((category) =>
   category.data.map((algo: AlgorithmData) => ({
     ...algo,
     category: category.category,
