@@ -8,7 +8,7 @@
 
   color-scheme: dark light;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #181818;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -18,7 +18,7 @@
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
+    color: #181818;
     background-color: #ffffff;
   }
   a:hover {
@@ -44,4 +44,54 @@ input[type='range']::-webkit-slider-thumb {
   width: 16px;
   background: #2563eb;
   border-radius: 9999px;
+}
+
+.glow-border {
+  position: relative;
+  z-index: 1;
+}
+
+.glow-border::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  height: 50%;
+  transform: translate(-50%, -50%) rotate(360deg);
+  border-radius: 1.2rem;
+  background: linear-gradient(
+    120deg,
+    #ff00cc,
+    #3333ff,
+    #00ffcc,
+    #ffcc00,
+    #ff00cc
+  );
+  background-size: 400% 400%;
+  filter: blur(12px);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  animation: border-glow-rotate 4s linear infinite;
+}
+
+.glow-active::before {
+  opacity: 1;
+}
+
+@keyframes border-glow-rotate {
+  0% {
+    background-position: 0% 50%;
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  50% {
+    background-position: 100% 50%;
+    transform: translate(-50%, -50%) rotate(180deg);
+  }
+  100% {
+    background-position: 0% 50%;
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
 }
