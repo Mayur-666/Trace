@@ -16,7 +16,8 @@ export const Algorithms: Algorithm[] = [
         id: 'quick-sort',
         name: 'Quick Sort',
         image: '/sample.png',
-        description: '',
+        description:
+          'Quick Sort uses a divide-and-conquer strategy by selecting a pivot, partitioning elements around it, and recursively sorting the subarrays. It’s fast in practice, elegant in theory, and dangerously slow only when you anger it with bad pivots.',
         route: '/sorting/quick-sort',
       },
     ],
@@ -28,7 +29,8 @@ export const Algorithms: Algorithm[] = [
         id: 'binary-search',
         name: 'Binary Search',
         image: '/sample.png',
-        description: '',
+        description:
+          'Binary Search efficiently finds an element in a sorted array by repeatedly dividing the search space in half. It’s logarithmic, surgical, and utterly useless unless the data is already sorted.',
         route: '/searching/binary-search',
       },
     ],
