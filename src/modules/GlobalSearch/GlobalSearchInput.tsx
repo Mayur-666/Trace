@@ -15,10 +15,33 @@ function GlobalSearchInput({
 }: Readonly<GlobalSearchInputProps>) {
   const { query } = useAppSelector((state) => state.global_search);
   const dispatch = useAppDispatch();
+  const timerRef = React.useRef<NodeJS.Timeout | null>(null);
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setQuery(e.target.value));
-  };
+  const onChange = React.useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.currentTarget.value;
+
+      // Clear previous timer
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+
+      // Debounce dispatch to Redux
+      timerRef.current = setTimeout(() => {
+        dispatch(setQuery(value));
+      }, 300);
+    },
+    [dispatch],
+  );
+
+  // Cleanup on unmount
+  React.useEffect(() => {
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+    };
+  }, []);
 
   return (
     <button
@@ -36,7 +59,7 @@ function GlobalSearchInput({
     >
       <input
         ref={inputRef}
-        value={query}
+        defaultValue={query}
         type="text"
         placeholder="Search algorithms..."
         onFocus={() => setIsActive(true)}
